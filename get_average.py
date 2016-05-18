@@ -19,14 +19,16 @@ def get_play_list(record_groups):
     res=[]
     for group in record_groups:
         tmp=[]
+        print group
         for r in group:
-            if r[3] ==1:
+            if r[3] =='1':
                 tmp.append(r[1])
         res.append(tmp)
     return res
 def count_play(play_list):
     res=[]
     for group in play_list:
+        print group
         res.append(Counter(group))
     return res
 
