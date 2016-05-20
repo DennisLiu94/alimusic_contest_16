@@ -21,7 +21,24 @@ def add_date(d1,days):
         day-=month_days[mon]
         mon+=1
     return 20150000+day+mon*100
+def get_continuous_dates(f_date,t_date):
+    f_month=int(f_date[4:6])
+    t_month=int(t_date[4:6])
+    assert f_month<=t_month
 
+    if f_month==t_month:
+        int_f_date=int(f_date)
+        int_t_date=int(t_date)
+
+        return range(int_f_date,int_t_date+1)
+
+    else:
+        f_list=range(int(f_date),int(f_date)-int(f_date[6:])+month_days[int(f_date[4:6])]+1)
+        t_list=range(int(t_date)-int(t_date[6:])+1,int(t_date)+1)
+        middle_list=[]
+        for mon in range(f_month,t_month-1):
+            middle_list+=range(20150000+mon*100+1,20150000+mon*100+month_days[mon]+1)
+        return f_list+middle_list+t_list
 def get_time_list(f_date,t_date,groups):
 
     
